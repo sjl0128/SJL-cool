@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<link rel="stylesheet" type="text/css" href="../css/zhuce.css">
+</head>
+<body>
+	<div class="bigBox">
+		<div class="smallBox">
+			<a href="../html/index.html"><img class="logo" src="../img/logo.png" alt=""></a>
+			<h1>创建账户</h1>
+			<form action="../php/ajaxlianxi.php" method="post">
+			<div class="youxiang" >
+				<h5>您的姓名</h5>
+				<input type="text" id="inpName" name="username"><span id="usernameMessage"></span>
+			</div>
+			<div class="youxiang">
+				<h5>邮箱地址</h5>
+				<input type="email" id="inpEmail" name="useremail"><span></span>
+			</div>
+			<div class="youxiang" style="height: 64px">
+				<h5>密码</h5>
+				<input type="password" placeholder ="至少6个字符" id="inppwd" name="userpass"><span></span><br>
+				<span >密码必须至少6个字符</span>
+			</div>
+			<div class="youxiang">
+				<h5>再次输入密码</h5>
+				<input type="password" name="userpws">
+			</div>
+			<div class="dengluanniu">
+				<a href=""><input type="submit" value="登录" ; </a>
+			</div>
+			</form>
+			<div class="youxiang">
+				<span>若您创建账户，即表示您同意我们的</span>
+				<span style="color: red">隐私声明</span>
+				<span>和</span>
+				<span style="color: red">使用条件</span>
+			</div>
+			<div class="fengexian">
+				<div class="xian" >
+				</div>
+				<a href="">其它注册方式</a>
+				<div class="xian" >
+				</div>
+			</div>
+			<div class="denglutu">
+				<a href="">
+					<img src="../img/denglu01.jpg" alt="">
+				</a>
+			</div>
+			<div class="youxiang">
+				<span>已拥有账户？</span><a href="../html/denglu.html">登录</a>
+				
+			</div>
+		</div>	
+		<div class="footer">
+				联系我们
+				<p style="font-size: 12px;"><span style="color: black">© 1999-2018 BOP LLC. 保留所有权利。</span>隐私声明使用条件</p>
+		</div>	
+	</div>
+	
+</body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script>
+	function $(id){
+		return document.getElementById(id);
+	}	
+
+    var inppwd= $("inppwd");
+    var inpEmail = $("inpEmail");
+    var inpName = $("inpName");
+// inp代表输入框  regEx代表正则表达式
+    function check(inp, regEx) {
+        inp.onblur = function () {
+        	if (regEx.test(this.value)) {
+                this.nextSibling.innerHTML = "输入正确";
+                this.nextSibling.style.color = "green";
+            } else {
+                this.nextSibling.innerHTML = "输入错误";
+                this.nextSibling.style.color = "red";
+            }
+        }
+    }
+
+    var regPwd=/^[a-zA-Z]\w{5,17}$/;
+    var regEmail = /^(126|163|qq)+([+-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    var regName = /^[\u4e00-\u9fa5]{2,}$/;
+
+    
+	
+    
+	check(inppwd, regPwd);
+    check(inpEmail, regEmail);
+    check(inpName, regName);
+  
+    
+</script>
+<script>
+	function $(srt) {
+    if (srt.charAt(0) == "#") {
+        return document.getElementById(srt.substring(1));
+    } else if (srt.charAt(0) == ".") {
+        return document.getElementsByClassName(srt.substring(1));
+    } else {
+        return document.getElementsByTagName(srt);
+    }
+}
+
+$("#inpName").onblur = function() {
+    let xhr = new XMLHttpRequest();
+
+    //2、设置请求参数
+    xhr.open("get", "../php/ajax02.php?username=" + this.value, true);
+
+    //3、设置回调函数
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            //5、接收响应
+            let str = xhr.responseText;
+            if (str == "0") {
+                $("#usernameMessage").innerHTML = "继续注册";
+                $("#usernameMessage").style.color="green";
+            } else {
+                $("#usernameMessage").innerHTML = "已使用";
+                $("#usernameMessage").style.color="red";
+            }
+
+        }
+    }
+
+    //4、发送请求
+    xhr.send();
+}
+</script>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="../css/denglu.css">
+</head>
+<body>
+	<div class="bigBox">
+		<div class="smallBox">
+			<a href="../html/index.html"><img class="logo" src="../img/logo.png" alt=""></a>
+
+			<form action="../php/denglu.php" method="post">
+			<div class="youxiang">
+				<h5>邮箱地址</h5>
+				<input type="text" name="useremail" id="useremail">
+			</div>
+			<div class="youxiang">
+				<h5>密码</h5>
+				<a href="">忘记密码</a>
+				<input type="password" name="userpass" id="userpass">
+			</div>
+
+
+			<div class="dengluanniu">
+				<input type="submit" value="登录" class="inpmit" style="background: #ee4a1b;border: none;height: 30px;width: 296px;" id="denglu_1">
+			</div>
+
+			</form>
+			<div class="cookie">
+				<input type="checkbox" class="kuang">
+				<span>记住登录状态。</span>
+				<select name="" id="">
+					<option value="" style="color: red"><a href="">详情</a></option>
+					<option value=""><a href="">请先注册</a></option>
+				</select>
+			</div>
+			<div class="fengexian">
+				<div class="xian" >
+				</div>
+				<a href="">更多登录方式</a>
+				<div class="xian" >
+				</div>
+			</div>
+			<div class="denglutu">
+				<a href="">
+					<img src="../img/denglu01.jpg" alt="">
+				</a>
+			</div>
+			<div class="fengexian2">
+				<div class="xian2" >
+				</div>
+				<a href="">Shopbop的新客户？</a>
+				<div class="xian2" >
+				</div>
+			</div>
+			<a href="../html/zhuce.html"><input type="button" value="创建您的Shopbop账户" class="heikuang"></a>
+
+		</div>
+		<div class="footer">
+				联系我们
+				<p style="font-size: 12px;"><span style="color: black">© 1999-2018 BOP LLC. 保留所有权利。</span>隐私声明使用条件</p>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../php/cookieTools.js">
+	
+</script>
+<script>
+	function $(srt) {
+    if (srt.charAt(0) == "#") {
+        return document.getElementById(srt.substring(1));
+    } else if (srt.charAt(0) == ".") {
+        return document.getElementsByClassName(srt.substring(1));
+    } else {
+        return document.getElementsByTagName(srt);
+    }
+}
+$("#denglu_1").onclick=function(){
+ 		addCookie("useremail",$("#useremail").value,7);
+ 		addCookie("userpass",$("#userpass").value,7);		
+}
+
+
+
+
+</script>
